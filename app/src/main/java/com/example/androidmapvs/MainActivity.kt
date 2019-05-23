@@ -23,12 +23,6 @@ class MainActivity : AppCompatActivity() {
                 sparse.put(i.toInt(), i.toString())
             }
 
-//            val l = sparse.size()
-//            Log.d(TAG, "size : $l ")
-//            for (i in 0 until l) {
-//                Log.d(TAG, "[" + sparse.keyAt(i) + " , " + sparse.valueAt(i) + "]")
-//            }
-
             Log.d(TAG, sparse.toString())
 
             Log.d(TAG, "count " + count + " consume time " + (System.currentTimeMillis() - time) + "ms")
@@ -37,6 +31,28 @@ class MainActivity : AppCompatActivity() {
 
         tvRandom.setOnClickListener {
 
+        }
+
+        tvDelete.setOnClickListener {
+            val array = SparseArray<Int>()
+            for (i in 9 downTo 0) {
+                array.put(i * 2, i)
+            }
+
+            val v = 5
+            val size = array.size()
+            for (i in size - 1 downTo 0) {
+                if (v < i) {
+                    Log.d(TAG, "value ${array.valueAt(i)} , toString: $array")
+                    array.remove(array.keyAt(i))
+                }
+
+                if (v == i) {
+                    break
+                }
+            }
+            Log.d(TAG, "result $array")
+            Log.d(TAG, "get key = 100 not add to sparse = ${array[100]}")
         }
     }
 }
